@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 public class ControlaJogador : MonoBehaviour
 {
     public float Velocidade = 10;
-    Vector3 direcao;
+    private Vector3 direcao;
     public GameObject TextoGameOver;
     public LayerMask MascaraChao;
     public bool Vivo = true;
+    private Rigidbody rigidbodyJogador;
 
     private void Start()
     {
         Time.timeScale = 1;
+        rigidbodyJogador = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -46,7 +48,9 @@ public class ControlaJogador : MonoBehaviour
     }
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().MovePosition(transform.position + (direcao * Velocidade * Time.deltaTime));
+        rigidbodyJogador.MovePosition
+            (rigidbodyJogador.position +
+            (direcao * Velocidade * Time.deltaTime));
 
         Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit impacto;
@@ -55,7 +59,7 @@ public class ControlaJogador : MonoBehaviour
             Vector3 posicaoMiraJogador = impacto.point - transform.position;
             posicaoMiraJogador.y = transform.position.y;
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
-            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+            rigidbodyJogador.MoveRotation(novaRotacao);
         }
        
     }

@@ -5,17 +5,18 @@ using UnityEngine;
 public class ControlaInimigo : MonoBehaviour
 {
     public GameObject Jogador;
-    public float Velocidade = 2;
+    public float Velocidade = 4;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Jogador = GameObject.FindWithTag("Jogador");
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void FixedUpdate()

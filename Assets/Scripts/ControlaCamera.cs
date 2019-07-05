@@ -6,7 +6,7 @@ public class ControlaCamera : MonoBehaviour
 
 {
     public GameObject Jogador;
-    Vector3 distanciaCompensada;
+    private Vector3 distanciaCompensada;
     // Start is called before the first frame update
     void Start()
     {
